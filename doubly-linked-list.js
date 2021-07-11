@@ -152,14 +152,3 @@ class DoublyLinkedList {
     this.traverse(current.next);
   }
 }
-
-const doublyLinkedList = new DoublyLinkedList();
-doublyLinkedList.push(13);
-doublyLinkedList.push(23);
-doublyLinkedList.push(45);
-doublyLinkedList.push(166);
-doublyLinkedList.push(53);
-doublyLinkedList.push(61);
-doublyLinkedList.push(79);
-doublyLinkedList.push(102);
-console.log(doublyLinkedList.get(4));

@@ -215,14 +215,3 @@ class SinglyLinkedList {
     return this;
   }
 }
-
-const singlyLinkedList = new SinglyLinkedList();
-singlyLinkedList.push(13);
-singlyLinkedList.push(23);
-singlyLinkedList.push(45);
-singlyLinkedList.push(166);
-singlyLinkedList.push(53);
-singlyLinkedList.push(61);
-singlyLinkedList.push(79);
-singlyLinkedList.push(102);
-console.log(singlyLinkedList.get(9));
