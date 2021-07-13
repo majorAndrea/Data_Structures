@@ -1,5 +1,4 @@
-// UNFINISHED
-// Working on spare time
+// COMPLETED
 
 class Node {
   constructor(val) {
