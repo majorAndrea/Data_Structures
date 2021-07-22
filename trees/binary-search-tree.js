@@ -47,6 +47,45 @@ class BinarySearchTree {
     }
   }
 
+  breathFirstSearch() {
+    const queue = [this.root];
+    const values = [];
+
+    while (queue.length) {
+      const dequeuedNode = queue.shift();
+
+      values.push(dequeuedNode.val);
+
+      dequeuedNode.right && queue.push(dequeuedNode.right);
+      dequeuedNode.left && queue.push(dequeuedNode.left);
+    }
+
+    return values;
+  }
+
+  depthFirstSearch(orderingType = "pre-order") {
+    const values = [];
+
+    const traverse = (node) => {
+      // Push values before traversing the nodes, so in a PRE-ordering fashion.
+      if (orderingType === "pre-order") values.push(node.val);
+
+      node.left && traverse(node.left);
+
+      // Push left values after traversing left nodes, so in a IN-ordering fashion.
+      if (orderingType === "in-order") values.push(node.val);
+
+      node.right && traverse(node.right);
+
+      // Push values after traversing the nodes, so in a POST-ordering fashion.
+      if (orderingType === "post-order") values.push(node.val);
+    };
+
+    traverse(this.root);
+
+    return values;
+  }
+
   insert(val) {
     const newNode = new Node(val);
 
