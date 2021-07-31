@@ -1,6 +1,13 @@
 // COMPLETED
 
-class MaxBinaryHeap {
+class Node {
+	constructor(val, priority) {
+		this.val = val;
+		this.priority = priority;
+	}
+}
+
+class PriorityQueue {
 	constructor() {
 		this.values = [];
 	}
@@ -14,9 +21,9 @@ class MaxBinaryHeap {
 			const parentIndex = Math.floor((childIndex - 1) / 2);
 			let parent = this.values[parentIndex];
 			
-			// If the child is less than the parent, then stop the loop
-			// because the child is in the right position inside the tree.
-			if (child <= parent) break;
+			// If the priority of child is less than the parent priority, then stop
+			// the loop because the child is in the right position inside the tree.
+			if (child.priority <= parent.priority) break;
 
 			// Swap the parent with the child.
 			this.values[parentIndex] = child;
@@ -44,21 +51,21 @@ class MaxBinaryHeap {
 		while (true) {
 			let leftChildIndex = (2 * parentIndex) + 1;
 			let rightChildIndex = (2 * parentIndex) + 2;
-			let parent = this.values[parentIndex];
+			let parent = this.values[parentIndex].priority;
 			let leftChild = null;
 			let rightChild = null;
 			let hasSwapped = false;
 
 			// Check for index out of the bounds.
 			if (leftChildIndex < length) {
-				leftChild = this.values[leftChildIndex];
+				leftChild = this.values[leftChildIndex].priority;
 			}
 
 			if (rightChildIndex < length) {
-				rightChild = this.values[rightChildIndex];
+				rightChild = this.values[rightChildIndex].priority;
 			}
 
-			// If both children are greater than the element to swap
+			// If both children priority is greater than the parent priority
 			// then do the swap with the greater of the two children.
 			if (leftChild > parent
 				&& rightChild > parent) {
@@ -77,12 +84,13 @@ class MaxBinaryHeap {
 				continue;
 			}
 
-			// Swap with the greater of the children.
+			// Swap the children with the highest priority.
 			if (leftChild > parent) {
 				this.swap(this.values, parentIndex, leftChildIndex);
 
 				parentIndex = leftChildIndex;
 				hasSwapped = true;
+				console.log("a")
 				continue;
 			}
 
@@ -100,7 +108,7 @@ class MaxBinaryHeap {
 		}
 	}
 
-	extractMax() {
+	dequeue() {
 		const maxValue = this.values[0];
 		const minValue = this.values.pop();
 
@@ -112,8 +120,10 @@ class MaxBinaryHeap {
 		return maxValue;
 	}
 
-	insert(value) {
-		this.values.push(value);
+	enqueue(val, priority) {
+		const newNode = new Node(val, priority);
+
+		this.values.push(newNode);
 		this.bubbleUp();
 	}
 }
